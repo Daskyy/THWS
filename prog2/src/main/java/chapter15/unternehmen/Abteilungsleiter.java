@@ -9,6 +9,6 @@ public class Abteilungsleiter extends Angestellter {
 
     public void befoerdern(Angestellter angestellter) {
         angestellter.gehaltsfaktor *= 1.1;
-        angestellter.gehalt = angestellter.grundgehalt * angestellter.gehaltsfaktor;
+        angestellter.gehalt *= angestellter.gehaltsfaktor;
     }
 }
