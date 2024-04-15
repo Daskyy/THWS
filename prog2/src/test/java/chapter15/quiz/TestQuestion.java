@@ -15,4 +15,14 @@ public class TestQuestion {
 
         question.printQuestion();
     }
+    @Test
+    public void testMultiple() {
+        Question q1 = new TextQuestion("Wie ist die Hauptstadt von Deutschland?");
+        Question q2 = new MultipleChoice("Wie viele Protonen hat ein Wasserstoff-Atom?", new String[]{"4", "2", "1", "0"});
+        Question[] questions = new Question[]{q1, q2};
+
+        for (Question i : questions) {
+            i.printQuestion();
+        }
+    }
 }

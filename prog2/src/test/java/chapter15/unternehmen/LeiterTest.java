@@ -25,4 +25,5 @@ public class LeiterTest {
         abteilungsleiter.befoerdern(angestellter);
         assertEquals(1100, angestellter.gehalt);
     }
+
 }

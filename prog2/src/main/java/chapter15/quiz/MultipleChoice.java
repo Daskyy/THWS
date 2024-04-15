@@ -8,7 +8,6 @@ public class MultipleChoice extends Question {
         this.answers = answers;
     }
 
-
     @Override
     public void printQuestion() {
         String toPrint = "Fragentext:\n" + question + "\n\nAntwortmöglichkeiten:\n";
