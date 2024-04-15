@@ -12,8 +12,8 @@ public class Main {
             }
         }
 
-        for (int i = 0; i < personen.length; i++) {
-            personen[i].gibTaetigkeitAus();
+        for (Person person : personen) {
+            person.gibTaetigkeitAus();
         }
     }
 }
