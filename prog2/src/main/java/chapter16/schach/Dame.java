@@ -21,6 +21,7 @@ public class Dame extends AbstractFigur implements Laeufer, Turm
     return kombiniertesBrett;
   }
 
+
   public static void main(String[] args)
   {
     Dame d = new Dame(4,5);
