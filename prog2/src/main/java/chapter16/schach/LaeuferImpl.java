@@ -10,23 +10,27 @@ public class LaeuferImpl extends AbstractFigur implements Laeufer
   public Brett gibErlaubteFelder()
   {
     Brett brett = new Brett();
-    brett.markiereFeld(x, y);
+    int x = this.getX();
+    int y = this.getY();
 
-    for (int i = 1; (x - i) >= 1 && (y - i) >= 1; i++)
-    {
-      brett.markiereFeld(x - i, y - i);
+    // oben links
+    for (int i = x, j = y; i >= 1 && j >= 1; i--, j--) {
+      brett.markiereFeld(i, j);
     }
-    for (int i = 1; (x + i) <= 8 && (y - i) >= 1; i++)
-    {
-      brett.markiereFeld(x + i, y - i);
+
+    // oben rechts
+    for (int i = x, j = y; i <= 8 && j >= 1; i++, j--) {
+      brett.markiereFeld(i, j);
     }
-    for (int i = 1; (x + i) <= 8 && (y + i) <= 8; i++)
-    {
-      brett.markiereFeld(x + i, y + i);
+
+    // unten links
+    for (int i = x, j = y; i >= 1 && j <= 8; i--, j++) {
+      brett.markiereFeld(i, j);
     }
-    for (int i = 1; (x - i) >= 1 && (y + i) <= 8; i++)
-    {
-      brett.markiereFeld(x - i, y + i);
+
+    // unten rechts
+    for (int i = x, j = y; i <= 8 && j <= 8; i++, j++) {
+      brett.markiereFeld(i, j);
     }
 
     return brett;
