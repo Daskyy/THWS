@@ -47,6 +47,4 @@ public class Springer extends AbstractFigur
             System.out.println();
         }
     }
-
-
 }

@@ -27,5 +27,6 @@ public class OptimizedChangeCalculatorTest {
         assertArrayEquals(new int[]{0, 0, 0, 0, 0, 1, 0, 1}, calculator.getChange(2, 50));
         assertArrayEquals(new int[]{0, 0, 0, 0, 1, 1, 0, 2}, calculator.getChange(4, 70));
     }
+
 }
 
