@@ -13,23 +13,23 @@ public class LaeuferImpl extends AbstractFigur implements Laeufer
     int x = this.getX();
     int y = this.getY();
 
-    // oben links
-    for (int i = x, j = y; i >= 1 && j >= 1; i--, j--) {
-      brett.markiereFeld(i, j);
-    }
-
-    // oben rechts
-    for (int i = x, j = y; i <= 8 && j >= 1; i++, j--) {
-      brett.markiereFeld(i, j);
-    }
-
     // unten links
-    for (int i = x, j = y; i >= 1 && j <= 8; i--, j++) {
+    for (int i = x-1, j = y-1; i >= 1 && j >= 1; i--, j--) {
       brett.markiereFeld(i, j);
     }
 
     // unten rechts
-    for (int i = x, j = y; i <= 8 && j <= 8; i++, j++) {
+    for (int i = x+1, j = y-1; i <= 8 && j >= 1; i++, j--) {
+      brett.markiereFeld(i, j);
+    }
+
+    // oben links
+    for (int i = x-1, j = y+1; i >= 1 && j <= 8; i--, j++) {
+      brett.markiereFeld(i, j);
+    }
+
+    // oben rechts
+    for (int i = x+1, j = y+1; i <= 8 && j <= 8; i++, j++) {
       brett.markiereFeld(i, j);
     }
 

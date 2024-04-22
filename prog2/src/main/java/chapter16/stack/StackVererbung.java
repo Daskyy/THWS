@@ -13,7 +13,7 @@ public class StackVererbung extends ArrayList<Integer> implements StackInterface
 
     public int pop() {
         if (isEmpty()) {
-            throw new IllegalStateException("Stack is empty");
+            throw new IllegalStateException("Stack leer");
         }
         return remove(size() - 1);
     }

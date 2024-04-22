@@ -11,7 +11,7 @@ public class Stack implements StackInterface {
 
     public int pop() {
         if (stack.isEmpty()) {
-            throw new IllegalStateException("Stack is empty");
+            throw new IllegalStateException("Stack leer");
         }
         return stack.remove(stack.size() - 1);
     }
