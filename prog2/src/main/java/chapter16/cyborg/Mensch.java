@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class Mensch extends Entscheiden {
     public Entscheidung entscheide(Gefahr gefahr) {
+//        if (gefahr == null) {
+//            throw new IllegalArgumentException("Gefahr darf nicht null sein");
+//        }
+
         Random random = new Random();
 
         if(random.nextInt(4) == 0) {
