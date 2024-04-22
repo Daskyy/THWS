@@ -61,4 +61,23 @@ public class BrettTest {
         assertTrue(brett.gibFeld(5, 5));
         assertFalse(brett.gibFeld(6, 6));
     }
+
+    // Teste Läufer Laufwege über festgelegter Position
+    @Test
+    public void testLaeuferImpl() {
+        LaeuferImpl l = new LaeuferImpl(4, 5);
+        Brett brett = l.gibErlaubteFelder();
+        assertTrue(brett.gibFeld(1, 2));
+        assertTrue(brett.gibFeld(2, 3));
+        assertTrue(brett.gibFeld(3, 4));
+        assertTrue(brett.gibFeld(5, 6));
+        assertTrue(brett.gibFeld(6, 7));
+        assertTrue(brett.gibFeld(7, 8));
+        assertTrue(brett.gibFeld(1, 8));
+        assertTrue(brett.gibFeld(2, 7));
+        assertTrue(brett.gibFeld(3, 6));
+        assertTrue(brett.gibFeld(5, 4));
+        assertTrue(brett.gibFeld(6, 3));
+        assertTrue(brett.gibFeld(7, 2));
+    }
 }

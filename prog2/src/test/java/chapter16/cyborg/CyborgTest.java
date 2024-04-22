@@ -26,7 +26,7 @@ public class CyborgTest {
     }
 
     // Teste Mensch 20 Mal und überprüfe ob UNENTSCHIEDEN mindestens 2 Mal zurückgegeben wird
-    // Chance für Nichteintreten ist 3/4^20 = 0.
+    // Chance für Nichteintreten ist 3/4^20 =~ 0.
     @Test
     public void testMensch() {
         Mensch mensch = new Mensch();
