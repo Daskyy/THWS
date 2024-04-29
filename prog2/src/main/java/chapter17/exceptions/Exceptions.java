@@ -1,4 +1,4 @@
-package chapter17.Exceptions;
+package chapter17.exceptions;
 
 import java.io.FileNotFoundException;
 
@@ -8,8 +8,8 @@ public class Exceptions {
     }
 
     public void ArrayIndexOutOfBoundsException() throws ArrayIndexOutOfBoundsException {
-        int[] arr = new int[5];
-        arr[5] = 10;
+        int[] arr = new int[1];
+        arr[4] = 10;
     }
 
     public void NullPointerException() throws NullPointerException {
@@ -22,14 +22,10 @@ public class Exceptions {
     }
 
     public void FileNotFoundException() throws FileNotFoundException {
-        // try {
-            java.io.FileInputStream fis = new java.io.FileInputStream("nichtgefunden.txt");
-        // } catch (java.io.FileNotFoundException e) {
-        //    System.out.println("FileNotFoundException");
-        // }
+        java.io.FileInputStream fis = new java.io.FileInputStream("nichtgefunden.txt");
     }
 
     public void ArithmeticException() throws ArithmeticException {
-        int i = 10 / 0;
+        int i = 0 / 0;
     }
 }

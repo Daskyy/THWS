@@ -1,4 +1,4 @@
-package chapter17.Exceptions;
+package chapter17.exceptions;
 
 import org.junit.jupiter.api.Test;
 
