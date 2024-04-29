@@ -1,20 +1,22 @@
 package chapter17.zeitmessung;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Scanner;
 
-public class Gepuffert {
+public class UngepuffertByte {
     public long time() throws FileNotFoundException {
         long sum = 0;
         for (int i = 0; i < 10; i++) {
             long start = System.currentTimeMillis();
-            new Gepuffert().copy("test.mp3", "copy.mp3");
+            new UngepuffertByte().copy("test.mp3", "copy.mp3");
             long end = System.currentTimeMillis();
             sum += end - start;
         }
         return sum / 10;
     }
-
     public void choose() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Bitte geben Sie den Pfad der Quelldatei ein:");
@@ -29,43 +31,28 @@ public class Gepuffert {
         }
     }
 
-    public void copy(String source, String destination) throws FileNotFoundException {
+    public void copy (String source, String destination) throws FileNotFoundException {
         long start = System.currentTimeMillis();
+        byte[] b = new byte[1024];
         FileInputStream fis = null;
         FileOutputStream fos = null;
-        BufferedOutputStream bos = null;
-        BufferedInputStream bis = null;
         try {
-            fis = new FileInputStream("test.mp3");
-            bis = new BufferedInputStream(fis);
-            fos = new FileOutputStream("copy.mp3");
-            bos = new BufferedOutputStream(fos);
-            int b;
-            while ((b = bis.read()) != -1) {
-                bos.write(b);
+            fis = new FileInputStream(source);
+            fos = new FileOutputStream(destination);
+            int len;
+            while ((len = fis.read(b)) != -1) {
+                fos.write(b, 0, len);
             }
         } catch (IOException e) {
             throw new FileNotFoundException();
         } finally {
             try {
-                if (bos != null) bos.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                if (fis != null) fis.close();
+            } catch (IOException ignored) {
             }
             try {
                 if (fos != null) fos.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            try {
-                if (bis != null) bis.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            try {
-                if (fis != null) fis.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (IOException ignored) {
             }
         }
         long end = System.currentTimeMillis();
