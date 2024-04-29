@@ -34,26 +34,13 @@ public class UngepuffertByte {
     public void copy (String source, String destination) throws FileNotFoundException {
         long start = System.currentTimeMillis();
         byte[] b = new byte[1024];
-        FileInputStream fis = null;
-        FileOutputStream fos = null;
-        try {
-            fis = new FileInputStream(source);
-            fos = new FileOutputStream(destination);
+        try (FileInputStream fis = new FileInputStream(source); FileOutputStream fos = new FileOutputStream(destination)) {
             int len;
             while ((len = fis.read(b)) != -1) {
                 fos.write(b, 0, len);
             }
         } catch (IOException e) {
             throw new FileNotFoundException();
-        } finally {
-            try {
-                if (fis != null) fis.close();
-            } catch (IOException ignored) {
-            }
-            try {
-                if (fos != null) fos.close();
-            } catch (IOException ignored) {
-            }
         }
         long end = System.currentTimeMillis();
         System.out.println("Kopieren dauerte " + (end - start) + " ms");
