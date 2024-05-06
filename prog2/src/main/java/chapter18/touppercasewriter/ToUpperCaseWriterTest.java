@@ -16,58 +16,65 @@ public class ToUpperCaseWriterTest
   ToUpperCaseWriter writer;
   ByteArrayOutputStream baos;
 
-  @BeforeEach
-  public void prepareTest()
-  {
-    baos = new ByteArrayOutputStream();
-    OutputStreamWriter osw = new OutputStreamWriter(baos);
-    writer = new ToUpperCaseWriter(osw);
-  }
-
-  @Test
-  public void writeCharTest()
-  {
-    try
+  private void assertWriteAndFlush(char input, String expectedOutput) {
+    try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+         OutputStreamWriter osw = new OutputStreamWriter(baos);
+         ToUpperCaseWriter writer = new ToUpperCaseWriter(osw))
     {
-      writer.write('a');
+      writer.write(input);
       writer.flush();
       String uppercase = baos.toString();
-      assertEquals(uppercase, "A");
-      writer.close();
+      assertEquals(expectedOutput, uppercase);
     }
     catch (IOException e)
     {
       fail("IOException" + e.getMessage());
     }
+  }
+
+  @Test
+  public void writeCharTest()
+  {
+    assertWriteAndFlush('a', "A");
   }
 
   @Test
   public void writeCharTestWithNonChar()
   {
-    try
-    {
-      writer.write('1');
-      writer.flush();
-      String uppercase = baos.toString();
-      assertEquals(uppercase, "1");
-      writer.close();
-    }
-    catch (IOException e)
-    {
-      fail("IOException" + e.getMessage());
-    }
+    assertWriteAndFlush('1', "1");
   }
-  
-  @AfterEach
-  public void cleanUp()
-  {
-    try
-    {
-      writer.close();
-    }
-    catch (IOException e)
-    {
-      fail("IOException" + e.getMessage());
-    }
+
+  // Der Buchstabe a soll nach der Ausführung des Writers ein großes A sein
+  @Test
+  public void writeCharTest2() {
+      assertWriteAndFlush('a', "A");
   }
+
+  // Die Zahl 1 soll unverändert aus dem Writer herauskommen.
+  @Test
+  public void writeCharTestWithNonChar2() {
+      assertWriteAndFlush('1', "1");
+  }
+
+  // Durchlaufen Sie die ersten 128 Zeichen des ASCII-Codes: Die Buchstaben von a-z
+  // sollen als Großbuchstaben aus dem Stream herauskommen.
+  @Test
+  public void writeCharTest3() {
+      for (char i = 1; i < 128; i++) {
+        if(i >= 'a' && i <= 'z') {
+          assertWriteAndFlush(i, String.valueOf(Character.toUpperCase(i)));
+        }
+      }
+  }
+
+  // Durchlaufen Sie die ersten 128 Zeichen des ASCII-Codes: Alle Zeichen außer den
+  // Buchstaben von a-z sollen unverändert aus dem Stream herauskommen.
+  @Test
+    public void writeCharTest4() {
+        for (char i = 1; i < 128; i++) {
+            if(i < 'a' || i > 'z') {
+                assertWriteAndFlush(i, Character.toString(i));
+            }
+        }
+    }
 }
