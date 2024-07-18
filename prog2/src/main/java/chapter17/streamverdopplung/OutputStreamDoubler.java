@@ -7,8 +7,8 @@ public class OutputStreamDoubler {
     OutputStream out2;
 
     public static void main(String[] args) {
-        // Erstellen Sie FileOutputStream-Objekte für file1.txt und file2.txt
-        try (FileOutputStream fos1 = new FileOutputStream("file1.txt");
+        // Erstellen Sie FileOutputStream-Objekte für konfiguration.txt und file2.txt
+        try (FileOutputStream fos1 = new FileOutputStream("konfiguration.txt");
              FileOutputStream fos2 = new FileOutputStream("file2.txt")) {
 
             OutputStreamDoubler doubler = new OutputStreamDoubler(fos1, fos2);
