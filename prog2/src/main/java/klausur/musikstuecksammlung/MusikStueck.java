@@ -1,8 +1,8 @@
 package klausur.musikstuecksammlung;
 
 public class MusikStueck {
-    String titel, interpret;
-    int laenge;
+    public String titel, interpret;
+    public int laenge;
 
     public MusikStueck(String titel, String interpret, int laenge) {
         this.titel = titel;
